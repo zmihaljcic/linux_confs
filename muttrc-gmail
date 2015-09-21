@@ -1,0 +1,72 @@
+set imap_user='MAIL@gmail.com'
+set realname="NAME LASTNAME"
+set smtp_url = "smtp://MAIL@smtp.gmail.com:587/"
+set spoolfile ='imaps://imap.gmail.com:993/INBOX'
+set folder = "imaps://imap.gmail.com:993"
+set record="+[Gmail]/Sent Mail"
+set postponed="+[Gmail]/Drafts"
+set header_cache="~/.mutt/cache/headers"
+set message_cachedir="~/.mutt/cache/bodies"
+set certificate_file="~/.mutt/certificates"
+#SSL
+set ssl_starttls = yes
+set ssl_force_tls = yes
+#Sent mails
+#Enable header caching
+#From header field
+set from="MAIL"
+set use_from=yes
+#use VIM
+set editor=/usr/bin/vim
+#sort mail descending
+set sort_aux=reverse-date-received       
+#set sort=threads
+set sort=reverse-date-sent
+set sort_re
+#refresh mail key
+bind index "^" imap-fetch-mail
+#alias file
+set alias_file=~/.mutt-alias
+source ~/.mutt-alias
+#set query_command="abook --mutt-query '%s'" macro index,pager A "<pipe-message>abook --add-email-quiet<return>" "add the sender address to abook"
+# Reading Mail
+set timeout=10  
+set mail_check=5
+set move=no     
+set mark_old=no
+ignore * # ignore all headers except for ...
+unignore Date: From: To: CC: Bcc: Subject:
+hdr_order Subject: Date: From: To: CC: Bcc:
+set index_format="%{%b %d} %-15.15L [%Z] %s" # custom index format
+
+# Composing Mail
+set editor="vim"     
+set markers=no     
+set signature=~/.sig  
+set include=yes     
+set forward_format="Fwd: %s"   
+#Pretty colors
+color status white blue
+color index green  default ~N  # new
+color index red default ~D  # deleted
+color index brightmagenta default ~T  # tagged
+color index brightyellow default ~F  # flagged
+color header green default "^Subject:"
+color header yellow default "^Date:"
+color header yellow default "^To:"
+color header yellow default "^Cc:"
+color header yellow default "^Bcc:"
+color header yellow default "^From:"
+color header red default "^X-.*:"
+# View Special Formats
+set mailcap_path=~/.mailcap
+auto_view text/html # auto-render html inline mutt
+alternative_order text/plain text/enriched text/html
+#CC
+set askcc=yes
+
+#My custom macros
+
+#folders
+set mbox="/home/USER/mail/mbox"
+set folder="/home/USER/mail"
